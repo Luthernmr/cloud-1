@@ -76,6 +76,7 @@ resource "aws_lb_listener" "ft_app_listener_https" {
     target_group_arn = values(aws_lb_target_group.ft_wordpress_target_groups)[0].arn
   }
 }
+
 resource "aws_lb_listener_rule" "ft_wordpress_listener_rules" {
   for_each = { for env in var.env_list : "${var.wordpress_subdomain}-${env}" => env }
 
