@@ -1,6 +1,6 @@
 # cloud-1
 
-![image](./cloud-1.drawio.svg)
+![image](./cloud-1.png)
 
 - eu-west-3
 
