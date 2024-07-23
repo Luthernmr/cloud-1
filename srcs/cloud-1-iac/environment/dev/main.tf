@@ -9,12 +9,27 @@ terraform {
       version = "~> 4.0"
     }
   }
+
+  # Use AWS S3 to synchronize terraform state
+  backend "s3" {
+    bucket  = "42-cloud-1-terraform-state"
+    key     = "state/terraform.tfstate"
+    region  = "eu-west-3" # Paris
+    encrypt = true
+
+    # This Database has a `LockID` entry to prevent concurent access
+    dynamodb_table = "42-cloud-1-terraform-state-lock"
+  }
 }
 
 provider "aws" {
-  region     = var.provider_region
-  access_key = var.access_key
-  secret_key = var.secret_key
+  # Use localy stored credentials (ex: .aws/credentials)
+  profile = "default"
+
+  # Those are provided by the profile
+  # region     = var.provider_region
+  # access_key = var.access_key
+  # secret_key = var.secret_key
 }
 
 provider "cloudflare" {
@@ -78,4 +93,3 @@ module "efs" {
   vpc_id                    = module.vpc.vpc_id
   ft_apps_security_group_id = module.ec2.ft_apps_security_group_id
 }
-
