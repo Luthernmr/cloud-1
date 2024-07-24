@@ -1,4 +1,5 @@
 terraform {
+  # TODO: Add required_version
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -59,10 +60,13 @@ module "ec2" {
   domain_name         = var.domain_name
   wordpress_subdomain = var.wordpress_subdomain
   env_list            = var.env_list
+
+  # TODO: Choose to use either module. or var.
   db_endpoint         = module.rds.rds_endpoints
   db_name             = module.rds.db_instance_name
   db_user             = var.db_user
   db_password         = var.db_password
+
   env                 = var.env
   efs_dns_name        = module.efs.efs_dns_name
 }

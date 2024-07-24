@@ -1,6 +1,6 @@
 resource "aws_security_group" "efs_sg" {
   name        = "allow_from_public_instances"
-  description = "Allow traffice from public instance sg only"
+  description = "Allow traffic from public instance sg only"
   vpc_id      = var.vpc_id
 
   ingress {
