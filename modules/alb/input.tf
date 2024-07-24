@@ -38,3 +38,8 @@ variable "env_list" {
   type = list(string)
   description = "List of sites to create"
 }
+
+variable "cloudflare_zone_id" {
+  type = string
+  description = "The unique ID to identify the domain/subdomain"
+}

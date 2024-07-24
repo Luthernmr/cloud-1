@@ -11,7 +11,7 @@ variable "cloudflare_zone_id" {
 variable "env_list" {
   type = list(string)
   # TODO: rename, simple letters could work well
-  default     = ["dev", "test", "preprod", "prod"]
+  default     = ["dev",]
   description = "List of sites to create"
 }
 
