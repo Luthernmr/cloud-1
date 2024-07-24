@@ -1,9 +1,3 @@
-# TODO: Remove / use this is not used
-variable "domain_name" {
-  type = string
-  description = "Root domain name used to create subdomains"
-}
-
 variable "cloudflare_zone_id" {
   type = string
   description = "The unique ID to identify the domain/subdomain"
