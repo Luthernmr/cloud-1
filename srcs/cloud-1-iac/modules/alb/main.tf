@@ -5,7 +5,6 @@ resource "aws_lb" "ft_lb" {
   security_groups    = [aws_security_group.ft_alb_security_group.id]
   subnets = [
     var.public_subnet_id,
-    var.public_subnet2_id,
   ]
 
   enable_deletion_protection = false

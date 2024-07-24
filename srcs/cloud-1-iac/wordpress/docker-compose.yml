@@ -22,7 +22,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${RDS_PASSWORD}
       WORDPRESS_DB_NAME: ${RDS_DB_NAME}
     volumes:
-      - /mnt/efs:/var/www/ # add VOLUME_NAME = "${each.key}-data" ?
+      - /mnt/efs:/var/www/html # add VOLUME_NAME = "${each.key}-data" ?
 
   wordpress-cli:
     restart: on-failure
@@ -34,7 +34,6 @@ services:
       WORDPRESS_DB_NAME: ${RDS_DB_NAME}
     command: >
       /bin/sh -c '
-      sleep 10;
       wp core install --path="/var/www/html" --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL}
       '
     volumes:
