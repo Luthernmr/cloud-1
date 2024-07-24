@@ -12,13 +12,13 @@ data "cloudinit_config" "ft_wp_init_config" {
           path        = "/app/docker-compose.yml",
           permissions = "0644"
           owner       = "root:root"
-          content     = file("${path.module}/../../wordpress/docker-compose.yml"),
+          content     = file("wordpress/docker-compose.yml"),
         },
         {
           path        = "/app/.env",
           permissions = "0644"
           owner       = "root:root"
-          content = templatefile("${path.module}/../../environment/${var.env}/.env", {
+          content = templatefile("env_template", {
             RDS_ENDPOINT = var.db_endpoint[each.key]
             RDS_USERNAME = var.db_user
             RDS_PASSWORD = var.db_password
@@ -33,7 +33,7 @@ data "cloudinit_config" "ft_wp_init_config" {
 
   part {
     content_type = "text/x-shellscript"
-    content      = templatefile("${path.module}/../../utils/setup.sh", {
+    content      = templatefile("utils/setup.sh", {
       EFS_DNS_NAME = var.efs_dns_name
       VOLUME_NAME = "${each.key}-data"
     })

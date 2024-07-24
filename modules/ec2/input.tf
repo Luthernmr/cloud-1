@@ -47,11 +47,6 @@ variable "ft_wp_db" {
   description = "aws_db_instance ressource on which it depends"
 }
 
-variable "env" {
-  type = string
-  description = "directory that contains in environment/ that contains the .env template used by docker compose"
-}
-
 variable "efs_dns_name" {
   type = string
   description = "Domain name of the EFS where WordPress will be installed"

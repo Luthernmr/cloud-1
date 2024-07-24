@@ -39,12 +39,11 @@ provider "cloudflare" {
 }
 
 module "vpc" {
-  source = "../../modules/vpc"
+  source = "./modules/vpc"
 }
 
 module "records" {
-  source               = "../../modules/records/"
-  domain_name          = var.domain_name
+  source               = "./modules/records"
   wordpress_subdomain  = var.wordpress_subdomain
   phpmyadmin_subdomain = var.phpmyadmin_subdomain
   env_list             = var.env_list
@@ -53,7 +52,7 @@ module "records" {
 }
 
 module "ec2" {
-  source = "../../modules/ec2/"
+  source = "./modules/ec2/"
 
   instance_type       = var.instance_type
   vpc_id              = module.vpc.vpc_id
@@ -62,18 +61,16 @@ module "ec2" {
   wordpress_subdomain = var.wordpress_subdomain
   env_list            = var.env_list
 
-  # TODO: Choose to use either module. or var.
   db_endpoint         = module.rds.rds_endpoints
   db_name             = module.rds.db_instance_name
   db_user             = var.db_user
   db_password         = var.db_password
 
-  env                 = var.env
   efs_dns_name        = module.efs.efs_dns_name
 }
 
 module "alb" {
-  source               = "../../modules/alb/"
+  source               = "./modules/alb"
   domain_name          = var.domain_name
   wordpress_subdomain  = var.wordpress_subdomain
   phpmyadmin_subdomain = var.phpmyadmin_subdomain
@@ -85,15 +82,14 @@ module "alb" {
 }
 
 module "rds" {
-  source      = "../../modules/rds/"
-  db_name     = var.db_name
+  source      = "./modules/rds"
   db_user     = var.db_user
   db_password = var.db_password
   env_list    = var.env_list
 }
 
 module "efs" {
-  source                    = "../../modules/efs"
+  source                    = "./modules/efs"
   public_subnet_id          = module.vpc.public_subnet_id
   vpc_id                    = module.vpc.vpc_id
   ft_apps_security_group_id = module.ec2.ft_apps_security_group_id

@@ -3,7 +3,6 @@ output "rds_endpoints" {
   description = "End point for each server instance name"
 }
 
-# TODO: Remove/Use, this variable is not referenced elsewhere
 output "db_instance_name" {
   value = { for key, rds_instance in aws_db_instance.ft_wp_db : key => rds_instance.db_name}
 }
