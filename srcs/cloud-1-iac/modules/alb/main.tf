@@ -7,6 +7,7 @@ resource "aws_lb" "ft_lb" {
     var.public_subnet_id,
   ]
 
+  # TODO: Document
   enable_deletion_protection = false
 }
 
