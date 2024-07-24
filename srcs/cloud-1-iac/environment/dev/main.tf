@@ -90,6 +90,10 @@ module "rds" {
   db_user     = var.db_user
   db_password = var.db_password
   env_list    = var.env_list
+  ft_apps_security_group_id  = module.ec2.ft_apps_security_group_id
+  vpc_id = module.vpc.vpc_id
+  public_subnet_id = module.vpc.public_subnet_id
+  public_subnet2_id = module.vpc.public_subnet2_id
 }
 
 module "efs" {
