@@ -2,17 +2,17 @@ version: '3'
 
 services:
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin:5.2
     ports:
       - "8080:80"
     environment:
       PMA_HOST: ${RDS_ENDPOINT}
       PMA_USER: ${RDS_USERNAME}
       PMA_PASSWORD: ${RDS_PASSWORD}
-      PMA_ARBITRARY: 1
+      PMA_ARBITRARY: 1 # Allows to connection to any server
 
   wordpress:
-    image: wordpress:latest
+    image: wordpress:6.6
     restart: always
     ports:
       - "9000:80"
@@ -22,13 +22,11 @@ services:
       WORDPRESS_DB_PASSWORD: ${RDS_PASSWORD}
       WORDPRESS_DB_NAME: ${RDS_DB_NAME}
     volumes:
-      - /mnt/efs:/var/www/ # add VOLUME_NAME = "${each.key}-data" ?
+      - /mnt/efs:/var/www/html # add VOLUME_NAME = "${each.key}-data" ?
 
   wordpress-cli:
     restart: on-failure
-    image: wordpress:cli
-    depends_on:
-      - wordpress
+    image: wordpress:cli-2.10
     environment:
       WORDPRESS_DB_HOST: ${RDS_ENDPOINT}
       WORDPRESS_DB_USER: ${RDS_USERNAME}
