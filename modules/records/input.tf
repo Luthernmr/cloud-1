@@ -22,3 +22,4 @@ variable "env_list" {
   type = list(string)
   description = "Server instance names used to suffix subdomains"
 }
+
