@@ -1,6 +1,3 @@
-# Sensible values
-/secrets.tf
-
 # SSL certificates
 /certificates
 
