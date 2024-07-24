@@ -54,15 +54,12 @@ module "records" {
 module "ec2" {
   source = "./modules/ec2/"
 
-  depends_on = [
-    module.rds.ft_wp_db
-  ]
-
   instance_type       = var.instance_type
   vpc_id              = module.vpc.vpc_id
   domain_name         = var.domain_name
   wordpress_subdomain = var.wordpress_subdomain
   env_list            = var.env_list
+  ft_wp_db            = module.rds.ft_wp_db
 
   db_endpoint = module.rds.rds_endpoints
   db_name     = module.rds.db_instance_name
@@ -89,6 +86,10 @@ module "rds" {
   db_user     = var.db_user
   db_password = var.db_password
   env_list    = var.env_list
+  vpc_id               = module.vpc.vpc_id
+  public_subnet_id     = module.vpc.public_subnet_id
+  public_subnet2_id    = module.vpc.public_subnet2_id
+  ft_apps_security_group_id = module.ec2.ft_apps_security_group_id
 }
 
 module "efs" {

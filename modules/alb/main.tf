@@ -81,7 +81,7 @@ resource "aws_lb_listener" "ft_app_listener_https" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = aws_iam_server_certificate.ft_cert.arn
+  certificate_arn   = data.aws_acm_certificate.nemorluther-cert.arn
 
   default_action {
     type             = "forward"

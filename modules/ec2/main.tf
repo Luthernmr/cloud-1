@@ -29,7 +29,8 @@ resource "aws_launch_template" "ft_wp_lt" {
     associate_public_ip_address = true
     delete_on_termination       = true
   }
-
+  
+  depends_on = [ var.ft_wp_db ]
   user_data = base64encode(data.cloudinit_config.ft_wp_init_config[each.key].rendered)
 
   tags = {

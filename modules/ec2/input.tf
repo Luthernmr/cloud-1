@@ -49,3 +49,7 @@ variable "env_list" {
   type = list(string)
   description = "List of site instance names to be create"
 }
+
+variable "ft_wp_db" {
+  
+}
