@@ -1,3 +1,14 @@
+terraform {
+  required_version = "~> 1.9.2"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 resource "aws_efs_file_system" "ft_wp_efs" {
   creation_token = "ft_efs_token"
 

@@ -1,3 +1,14 @@
+terraform {
+  required_version = "~> 1.9.2"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 resource "aws_db_instance" "ft_wp_db" {
   for_each               = { for env in var.env_list : env => env }
   # TODO: Document
