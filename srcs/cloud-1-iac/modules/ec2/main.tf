@@ -1,3 +1,18 @@
+terraform {
+  required_version = "~> 1.9.2"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    cloudinit = {
+      source  = "hashicorp/cloudinit"
+      version = "~> 2.3"
+    }
+  }
+}
+
 resource "aws_launch_template" "ft_wp_lt" {
   for_each      = { for env in var.env_list : env => env }
   name_prefix   = "${each.key}-instance-wp-phpma"
