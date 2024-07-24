@@ -64,12 +64,12 @@ module "ec2" {
   wordpress_subdomain = var.wordpress_subdomain
   env_list            = var.env_list
 
-  db_endpoint         = module.rds.rds_endpoints
-  db_name             = module.rds.db_instance_name
-  db_user             = var.db_user
-  db_password         = var.db_password
+  db_endpoint = module.rds.rds_endpoints
+  db_name     = module.rds.db_instance_name
+  db_user     = var.db_user
+  db_password = var.db_password
 
-  efs_dns_name        = module.efs.efs_dns_name
+  efs_dns_name = module.efs.efs_dns_name
 }
 
 module "alb" {
