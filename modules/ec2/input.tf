@@ -40,13 +40,6 @@ variable "wordpress_subdomain" {
   description = "Subdomain prefix used by WordPress"
 }
 
-# Required to order setup order see `depends_on`
-variable "ft_wp_db" {
-  # TODO: find type
-  type = map(any)
-  description = "aws_db_instance ressource on which it depends"
-}
-
 variable "efs_dns_name" {
   type = string
   description = "Domain name of the EFS where WordPress will be installed"

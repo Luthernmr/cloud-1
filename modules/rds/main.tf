@@ -11,19 +11,17 @@ terraform {
 
 resource "aws_db_instance" "ft_wp_db" {
   for_each               = { for env in var.env_list : env => env }
-  # TODO: Document
-  allocated_storage      = 10
+  allocated_storage      = 10 # Available storage in GigaBytes
   db_name                = "${each.key}db"
   engine                 = "mysql"
   engine_version         = "8.0"
-  # TODO: Document
-  instance_class         = "db.t3.micro"
+  instance_class         = "db.t3.micro" # T3 Micro for RDS instances
   username               = var.db_user
   password               = var.db_password
-  # TODO: Document
+  # Use the default paramaters for MySQL on RDS
   parameter_group_name   = "default.mysql8.0"
   vpc_security_group_ids = [aws_security_group.rds_security_group.id]
-  # TODO: Document
+  # Create a snapshot before deleting the database
   skip_final_snapshot    = true
   # TODO: Document
   publicly_accessible    = true

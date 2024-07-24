@@ -24,8 +24,6 @@ resource "aws_launch_template" "ft_wp_lt" {
     http_tokens   = "required"
   }
 
-  depends_on = [var.ft_wp_db]
-
   network_interfaces {
     security_groups             = [aws_security_group.ft_apps_security_group.id]
     associate_public_ip_address = true

@@ -54,9 +54,12 @@ module "records" {
 module "ec2" {
   source = "./modules/ec2/"
 
+  depends_on = [
+    module.rds.ft_wp_db
+  ]
+
   instance_type       = var.instance_type
   vpc_id              = module.vpc.vpc_id
-  ft_wp_db            = module.rds.ft_wp_db
   domain_name         = var.domain_name
   wordpress_subdomain = var.wordpress_subdomain
   env_list            = var.env_list

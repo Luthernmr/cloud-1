@@ -19,7 +19,7 @@ resource "aws_lb" "ft_lb" {
     var.public_subnet2_id,
   ]
 
-  # TODO: Document
+  # Authorize terraform to delete this load balancer
   enable_deletion_protection = false
 }
 
