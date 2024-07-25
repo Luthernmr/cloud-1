@@ -75,6 +75,7 @@ module "alb" {
   wordpress_subdomain  = var.wordpress_subdomain
   phpmyadmin_subdomain = var.phpmyadmin_subdomain
   lt_ids               = module.ec2.lt_ids
+  lt_version           = module.ec2.lt_latest_version
   env_list             = var.env_list
   vpc_id               = module.vpc.vpc_id
   public_subnet_id     = module.vpc.public_subnet_id

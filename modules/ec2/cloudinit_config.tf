@@ -25,6 +25,7 @@ data "cloudinit_config" "ft_wp_init_config" {
             RDS_DB_NAME  = var.db_name[each.key]
             WP_URL       = "${var.wordpress_subdomain}-${each.key}.${var.domain_name}"
             WP_TITLE     = "${var.wordpress_subdomain}-${each.key}-title"
+            VOLUME_NAME  = "${each.key}-data"
           }),
         },
       ],
@@ -35,7 +36,7 @@ data "cloudinit_config" "ft_wp_init_config" {
     content_type = "text/x-shellscript"
     content      = templatefile("utils/setup.sh", {
       EFS_DNS_NAME = var.efs_dns_name
-      VOLUME_NAME = "${each.key}-data"
+      VOLUME_NAME  = "${each.key}-data"
     })
   }
 }

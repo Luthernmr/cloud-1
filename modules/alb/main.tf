@@ -139,6 +139,17 @@ resource "aws_autoscaling_group" "ft_wp_asg" {
     id      = var.lt_ids[each.key]
     version = "$Latest"
   }
+
+  instance_refresh {
+    strategy = "Rolling"
+    triggers = ["tag"]
+  }
+
+  tag {
+    key                 = "launch version"
+    value               = var.lt_version[each.key]
+    propagate_at_launch = true
+  }
 }
 
 resource "aws_autoscaling_attachment" "ft_wordpress_asg_attachment" {

@@ -10,3 +10,4 @@ WP_TITLE=${WP_TITLE}
 WP_ADMIN_USER=my-admin-user
 WP_ADMIN_PASSWORD=my-admin-password
 WP_ADMIN_EMAIL=my-email@mail.com
+VOLUME_NAME=${VOLUME_NAME}

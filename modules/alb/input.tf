@@ -8,6 +8,11 @@ variable "lt_ids" {
   description = "AWS Launch Template ID"
 }
 
+variable "lt_version" {
+  type = map(string)
+  description = "Name of the launch templates version to use"
+}
+
 variable "vpc_id" {
   type = string
   description = "AWS Virtual Private Cloud ID"
