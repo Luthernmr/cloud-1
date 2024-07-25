@@ -8,13 +8,11 @@ variable "vpc_id" {
   description = "ID of the Virtual Private Cloud containing the EC2"
 }
 
-# TODO: rename
 variable "db_endpoint" {
   type = map(string)
   description = "End point for each server instance"
 }
 
-# TODO: rename
 variable "db_name" {
   type = map(string)
   description = "Database name for each server instance"
@@ -51,5 +49,6 @@ variable "env_list" {
 }
 
 variable "ft_wp_db" {
-  
+  type = map(any)
+  description = "Wordpress DB used to declore depends_on"
 }

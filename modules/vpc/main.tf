@@ -16,7 +16,6 @@ resource "aws_vpc" "ft_wp_vpc" {
   enable_dns_hostnames = true
 }
 
-# TODO: rename to include AZ name
 resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.ft_wp_vpc.id
   cidr_block        = "10.0.3.0/24"
@@ -24,7 +23,6 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true  
 }
 
-# TODO: rename to include AZ name
 resource "aws_subnet" "public_subnet2" {
   vpc_id            = aws_vpc.ft_wp_vpc.id
   cidr_block        = "10.0.4.0/24"
