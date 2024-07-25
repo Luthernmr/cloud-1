@@ -7,8 +7,6 @@ services:
       - "8080:80"
     environment:
       PMA_HOST: ${RDS_ENDPOINT}
-      PMA_USER: ${RDS_USERNAME}
-      PMA_PASSWORD: ${RDS_PASSWORD}
       PMA_ARBITRARY: 1 # Allows to connection to any server
 
   wordpress:
